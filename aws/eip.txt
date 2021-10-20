@@ -1,0 +1,6 @@
+/*
+resource "aws_eip" "ip" {
+	Instance = aws_instance.example.id
+	Depends_on = [aws_instance.example.id]
+}
+*/
