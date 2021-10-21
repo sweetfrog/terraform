@@ -6,17 +6,18 @@ resource "aws_instance" "example" {
      tags = {
     		Name = "Terraform"
         }
-#this provisioner will be called when the resource is created
+
 provisioner "local-exec" {
+    when    = create
     command = "echo aws_instance.example.private_ip >> private_ip.txt"
 }
 
-# this provisioner will be called when the resource id destoryed
+
 provisioner "local-exec" {
-    when = destory
-    command = "rm private_ip.txt"
+     when    = destroy
+     command = "rm private_ip.txt"
+    }
 }
- }
 
   resource "aws_security_group" "ssh_access" {
     name = "ssh-access-security-group"
